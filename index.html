@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mithil Patel | AI & Data Portfolio</title>
+    <link rel="icon" type="image/png" href="dallogo.png">
+    <style>
+        /* CSS Variables for Theme Switching */
+        :root { 
+            --bg: #0A192F; 
+            --text: #ffffff; 
+            --accent: #172a45; 
+        }
+
+        /* Base Body Styles */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navigation Layout */
+        nav { 
+            background-color: var(--accent); 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+        }
+
+        nav a { 
+            color: var(--text); 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+
+        /* Theme Button Container */
+        .theme-area { 
+            text-align: center; 
+            margin: 20px; 
+        }
+
+        /* Main Content Layout */
+        main { 
+            max-width: 900px; 
+            margin: auto; 
+            padding: 20px; 
+            text-align: center; 
+        }
+
+        /* Profile Section Styling */
+        .content { 
+            background-color: var(--accent); 
+            padding: 20px; 
+            text-align: left; 
+            display: flex; 
+            gap: 20px; 
+            align-items: center; 
+            border-radius: 8px;
+        }
+
+        /* Table Styling */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            border: 1px solid var(--text); 
+        }
+
+        th, td { 
+            border: 1px solid var(--text); 
+            padding: 10px; 
+        }
+
+        /* Footer Styling */
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background-color: var(--accent); 
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">HOME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="theme-area">
+        <button id="btn-sapphire">Blue Theme</button>
+        <button id="btn-light">Light Theme</button>
+        <button id="btn-contrast">High Contrast</button>
+    </div>
+
+    <main>
+        <h2 id="greeting"></h2>
+
+        <h1>Mithil Patel</h1>
+        <p><h3>Computer Science Student | AI & Data Enthusiast</h3></p>
+        <img src="Skyline.jpg" width="800" height="450" alt="Halifax skyline image">
+
+        <div class="content">
+            <img src="profile.png" width="250" height="250" alt="Initials logo image">
+            <div>
+                <h2>About Me</h2>
+                <p>I am a Computer Science student at Dalhousie University with a growing interest in Artificial Intelligence and data-driven systems. I enjoy building structured programs and understanding how intelligent systems make decisions.</p>
+                
+                <h3>Education</h3>
+                <table>
+                    <tr>
+                        <th>Year</th>
+                        <th>Institution</th>
+                    </tr>
+                    <tr>
+                        <td>2025 - Present</td>
+                        <td>Dalhousie University</td>
+                    </tr>
+                </table>
+
+                <h3>Skills</h3>
+                <ul>
+                    <li>Python, Java, C++</li>
+                    <li>Data Structures</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy; Mithil Patel</footer>
+
+    <script>
+        // JS Requirement: Notification [cite: 22]
+        window.onload = function() {
+            alert("Welcome to Mithil's Portfolio!");
+            
+            // JS Requirement: Conditional logic for time-based greeting [cite: 23]
+            const hour = new Date().getHours();
+            const greetElement = document.getElementById('greeting');
+            
+            if (hour < 12) {
+                greetElement.innerText = "Good Morning!";
+            } else if (hour < 18) {
+                greetElement.innerText = "Good Afternoon!";
+            } else {
+                greetElement.innerText = "Good Evening!";
+            }
+        };
+
+        // JS Requirement: Event Handlers for Theme Switching [cite: 24, 25]
+        const root = document.documentElement;
+
+        document.getElementById('btn-sapphire').addEventListener('click', function() {
+            root.style.setProperty('--bg', '#0A192F');
+            root.style.setProperty('--text', '#ffffff');
+            root.style.setProperty('--accent', '#172a45');
+        });
+
+        document.getElementById('btn-light').addEventListener('click', function() {
+            root.style.setProperty('--bg', '#ffffff');
+            root.style.setProperty('--text', '#000000');
+            root.style.setProperty('--accent', '#e0e0e0');
+        });
+
+        document.getElementById('btn-contrast').addEventListener('click', function() {
+            root.style.setProperty('--bg', '#000000');
+            root.style.setProperty('--text', '#ffff00');
+            root.style.setProperty('--accent', '#333333');
+        });
+    </script>
+</body>
+</html>

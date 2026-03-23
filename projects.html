@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | Mithil Patel</title>
+    <link rel="icon" type="image/png" href="dallogo.png">
+    <style>
+        :root { 
+            --bg: #0A192F; 
+            --text: #ffffff; 
+            --accent: #172a45; 
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: 0.3s;
+        }
+
+        nav { 
+            background-color: var(--accent); 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+        }
+
+        nav a { 
+            color: var(--text); 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+
+        .theme-area { 
+            text-align: center; 
+            margin: 20px; 
+        }
+
+        main { 
+            max-width: 900px; 
+            margin: auto; 
+            padding: 20px; 
+        }
+
+        .project-card { 
+            background-color: var(--accent); 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 8px; 
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background-color: var(--accent); 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="theme-area">
+        <button id="btn-sapphire">Blue Theme</button>
+        <button id="btn-light">Light Theme</button>
+        <button id="btn-contrast">High Contrast</button>
+    </div>
+
+    <main>
+        <h2 id="greeting"></h2>
+        <h1>Projects & Learning Work</h1>
+
+        <div class="project-card">
+            <h2>Website Collaboration</h2>
+            <p>Worked collaboratively on designing and structuring a responsive website layout.</p>
+            <a href="https://frisbeemotion.com" target="_blank">
+                <img src="frisbeelogo.png" width="500" height="150" alt="Logo">
+            </a>
+        </div>
+
+        <div class="project-card">
+            <h2>Learning Media</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/E0Hmnixke2g" frameborder="0"></iframe>
+            <br><br>
+            <video width="560" height="315" controls>
+                <source src="Bigdata.mp4" type="video/mp4">
+            </video>
+            <br><br>
+            <audio controls>
+                <source src="TTS.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </main>
+
+    <footer>&copy; Mithil Patel</footer>
+
+    <script>
+        // JS Requirement: Conditional greeting [cite: 23]
+        const hour = new Date().getHours();
+        const greetElement = document.getElementById('greeting');
+        if (hour < 12) { 
+            greetElement.innerText = "Morning Update"; 
+        } else { 
+            greetElement.innerText = "Latest Projects"; 
+        }
+
+        // JS Requirement: Theme Switching Logic [cite: 24, 25]
+        const root = document.documentElement;
+        
+        document.getElementById('btn-sapphire').onclick = function() {
+            root.style.setProperty('--bg', '#0A192F'); 
+            root.style.setProperty('--text', '#ffffff'); 
+            root.style.setProperty('--accent', '#172a45');
+        };
+        
+        document.getElementById('btn-light').onclick = function() {
+            root.style.setProperty('--bg', '#ffffff'); 
+            root.style.setProperty('--text', '#000000'); 
+            root.style.setProperty('--accent', '#e0e0e0');
+        };
+        
+        document.getElementById('btn-contrast').onclick = function() {
+            root.style.setProperty('--bg', '#000000'); 
+            root.style.setProperty('--text', '#ffff00'); 
+            root.style.setProperty('--accent', '#333333');
+        };
+    </script>
+</body>
+</html>
