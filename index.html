@@ -1,93 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Mithil Patel | AI & Data Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mithil Patel | AI &amp; Data Portfolio</title>
     <link rel="icon" type="image/png" href="dallogo.png">
     <style>
-        /* CSS Variables for Theme Switching */
-        :root { 
-            --bg: #0A192F; 
-            --text: #ffffff; 
-            --accent: #172a45; 
+        /* 1. Universal Selector */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Base Body Styles */
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            transition: background-color 0.3s, color 0.3s;
+        :root {
+            --bg: #0a192f;
+            --bg2: #112240;
+            --acc: #172a45;
+            --txt: #ccd6f6;
+            --txb: #e6f1ff;
+            --hl: #64ffda;
+            --hlm: rgba(100, 255, 218, 0.1);
+            --lnk: #64b5f6;
+            --shd: rgba(2, 12, 27, 0.7);
         }
 
-        /* Navigation Layout */
-        nav { 
-            background-color: var(--accent); 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
+        html {
+            scroll-behavior: smooth;
         }
 
-        nav a { 
-            color: var(--text); 
-            text-decoration: none; 
-            font-weight: bold; 
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.6;
+            transition: 0.4s;
+            overflow-x: hidden;
         }
 
-        /* Theme Button Container */
-        .theme-area { 
-            text-align: center; 
-            margin: 20px; 
+        /* 2. Multiple Selector */
+        h1,
+        h2,
+        h3 {
+            color: var(--txb);
+            font-weight: 600;
         }
 
-        /* Main Content Layout */
-        main { 
-            max-width: 900px; 
-            margin: auto; 
-            padding: 20px; 
-            text-align: center; 
+        a {
+            color: var(--lnk);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        /* Profile Section Styling */
-        .content { 
-            background-color: var(--accent); 
-            padding: 20px; 
-            text-align: left; 
-            display: flex; 
-            gap: 20px; 
-            align-items: center; 
+        a:hover {
+            color: var(--hl);
+        }
+
+        /* Attribute Selector */
+        a[href^="mailto"] {
+            color: var(--hl);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Nav */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg2);
+            box-shadow: 0 4px 20px var(--shd);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--hl);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        /* 3. Child Selector */
+        nav>.links>li>a {
+            color: var(--txt);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 4px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        /* Pseudo-element Selector */
+        nav>.links>li>a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--hl);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        nav>.links>li>a:hover {
+            color: var(--hl);
+        }
+
+        nav>.links>li>a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: var(--hl);
+            border-radius: 2px;
+        }
+
+        /* Theme */
+        .theme-area {
+            text-align: center;
+            padding: 12px;
+            background: var(--acc);
+            border-bottom: 1px solid var(--hlm);
+        }
+
+        .theme-area button {
+            margin: 0 6px;
+            padding: 8px 18px;
+            cursor: pointer;
+            border: 1px solid var(--hl);
+            background: transparent;
+            color: var(--hl);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .theme-area button:hover {
+            background: var(--hlm);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.3), rgba(10, 25, 47, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-overlay h1 {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        /* 5. Adjacent Sibling Selector */
+        .hero-overlay h1+p {
+            font-size: 1.2rem;
+            color: var(--hl);
+            letter-spacing: 2px;
+        }
+
+        /* Main */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 24px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--acc);
+        }
+
+        .section-title span {
+            color: var(--hl);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        #greeting {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--hl);
+            margin-bottom: 32px;
+            letter-spacing: 1px;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            background: var(--bg2);
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px -15px var(--shd);
+            align-items: start;
+            margin-bottom: 48px;
+        }
+
+        .profile-wrap {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Image 1: border, padding, margin */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            border: 3px solid var(--hl);
+            padding: 5px;
+            margin: 8px;
+            object-fit: cover;
+            background: var(--acc);
+            transition: 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.15);
+        }
+
+        .about-text p {
+            margin-bottom: 16px;
+        }
+
+        .about-text h3 {
+            color: var(--hl);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Skills (Unordered List) */
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .skills-list li {
+            background: var(--hlm);
+            color: var(--hl);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: var(--acc);
             border-radius: 8px;
+            overflow: hidden;
         }
 
-        /* Table Styling */
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            border: 1px solid var(--text); 
+        th,
+        td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.08);
         }
 
-        th, td { 
-            border: 1px solid var(--text); 
-            padding: 10px; 
+        th {
+            background: rgba(100, 255, 218, 0.08);
+            color: var(--hl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Footer Styling */
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            background-color: var(--accent); 
+        /* Gallery */
+        .gallery {
+            margin-top: 48px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             margin-top: 20px;
+        }
+
+        .gallery-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg2);
+            box-shadow: 0 4px 15px var(--shd);
+            transition: 0.3s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Image 2: border, padding, margin */
+        .gallery-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border: 2px solid var(--acc);
+            padding: 3px;
+            margin: 0;
+            transition: transform 0.4s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-card .caption {
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* 4. Sibling Selector */
+        .gallery-card img~.caption {
+            border-top: 1px solid rgba(100, 255, 218, 0.08);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 28px 20px;
+            background: var(--bg2);
+            margin-top: 60px;
+            border-top: 1px solid var(--acc);
+            font-size: 0.85rem;
+        }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 24px;
+                padding: 24px;
+            }
+
+            .skills-list {
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                height: 320px;
+            }
+
+            .hero-overlay h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: var(--bg2);
+                padding: 20px;
+                gap: 16px;
+                box-shadow: 0 10px 20px var(--shd);
+            }
+
+            .links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: flex;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 260px;
+            }
+
+            .hero-overlay h1 {
+                font-size: 1.8rem;
+            }
+
+            .theme-area button {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                margin: 2px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <nav>
-        <a href="home.html">HOME</a>
-        <a href="projects.html">PROJECTS</a>
-        <a href="contact.html">CONTACT</a>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">MP</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="theme-area">
         <button id="btn-sapphire">Blue Theme</button>
@@ -95,81 +491,100 @@
         <button id="btn-contrast">High Contrast</button>
     </div>
 
+    <section class="hero">
+        <img src="Skyline.jpg" alt="Halifax skyline at night with city lights reflecting on the harbour"
+            class="hero-img">
+        <div class="hero-overlay">
+            <h1>Mithil Patel</h1>
+            <p>Computer Science &bull; AI &amp; Data Enthusiast</p>
+        </div>
+    </section>
+
     <main>
-        <h2 id="greeting"></h2>
-
-        <h1>Mithil Patel</h1>
-        <p><h3>Computer Science Student | AI & Data Enthusiast</h3></p>
-        <img src="Skyline.jpg" width="800" height="450" alt="Halifax skyline image">
-
-        <div class="content">
-            <img src="profile.png" width="250" height="250" alt="Initials logo image">
-            <div>
-                <h2>About Me</h2>
-                <p>I am a Computer Science student at Dalhousie University with a growing interest in Artificial Intelligence and data-driven systems. I enjoy building structured programs and understanding how intelligent systems make decisions.</p>
-                
+        <p id="greeting"></p>
+        <h2 class="section-title"><span>01.</span> About Me</h2>
+        <div class="about-grid">
+            <div class="profile-wrap">
+                <img src="profile.png" alt="Mithil Patel profile photo" class="profile-img">
+            </div>
+            <div class="about-text">
+                <p>I am a Computer Science student at <strong>Dalhousie University</strong> with a growing interest in
+                    Artificial Intelligence and data-driven systems. I enjoy building projects that combine clean code
+                    with meaningful data insights.</p>
+                <p>Currently exploring machine learning, web development, and big data analytics to develop real-world
+                    solutions.</p>
                 <h3>Education</h3>
                 <table>
                     <tr>
                         <th>Year</th>
                         <th>Institution</th>
+                        <th>Program</th>
                     </tr>
                     <tr>
-                        <td>2025 - Present</td>
+                        <td>2025 ‑ Present</td>
                         <td>Dalhousie University</td>
+                        <td>Bachelor of Computer Science</td>
                     </tr>
                 </table>
-
                 <h3>Skills</h3>
-                <ul>
-                    <li>Python, Java, C++</li>
-                    <li>Data Structures</li>
-                    <li>Problem Solving</li>
+                <ul class="skills-list">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                    <li>Data Analysis</li>
+                    <li>Machine Learning</li>
+                    <li>Git</li>
                 </ul>
             </div>
         </div>
+
+        <section class="gallery">
+            <h2 class="section-title"><span>02.</span> Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="Skyline.jpg" alt="Halifax waterfront skyline panorama at dusk">
+                    <div class="caption">Halifax Skyline</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="circuit.png" alt="Close-up of electronic circuit board with wiring and components">
+                    <div class="caption">Circuit Design</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="dallogo.png" alt="Dalhousie University campus logo">
+                    <div class="caption">Dalhousie University</div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>&copy; Mithil Patel</footer>
+    <footer>&copy; 2026 Mithil Patel</footer>
 
     <script>
-        // JS Requirement: Notification [cite: 22]
-        window.onload = function() {
-            alert("Welcome to Mithil's Portfolio!");
-            
-            // JS Requirement: Conditional logic for time-based greeting [cite: 23]
-            const hour = new Date().getHours();
-            const greetElement = document.getElementById('greeting');
-            
-            if (hour < 12) {
-                greetElement.innerText = "Good Morning!";
-            } else if (hour < 18) {
-                greetElement.innerText = "Good Afternoon!";
-            } else {
-                greetElement.innerText = "Good Evening!";
-            }
+        var hour = new Date().getHours();
+        var g = document.getElementById('greeting');
+        if (hour < 12) g.textContent = "Good Morning — Welcome to my portfolio";
+        else if (hour < 17) g.textContent = "Good Afternoon — Welcome to my portfolio";
+        else g.textContent = "Good Evening — Welcome to my portfolio";
+
+        var root = document.documentElement;
+        function setTheme(bg, bg2, acc, txt, txb, hl, hlm, lnk) {
+            root.style.setProperty('--bg', bg);
+            root.style.setProperty('--bg2', bg2);
+            root.style.setProperty('--acc', acc);
+            root.style.setProperty('--txt', txt);
+            root.style.setProperty('--txb', txb);
+            root.style.setProperty('--hl', hl);
+            root.style.setProperty('--hlm', hlm);
+            root.style.setProperty('--lnk', lnk);
+        }
+        document.getElementById('btn-sapphire').onclick = function () { setTheme('#0a192f', '#112240', '#172a45', '#ccd6f6', '#e6f1ff', '#64ffda', 'rgba(100,255,218,0.1)', '#64b5f6'); };
+        document.getElementById('btn-light').onclick = function () { setTheme('#f5f5f5', '#ffffff', '#e0e0e0', '#333333', '#111111', '#0077b6', 'rgba(0,119,182,0.1)', '#0077b6'); };
+        document.getElementById('btn-contrast').onclick = function () { setTheme('#000000', '#111111', '#222222', '#f0f0f0', '#ffffff', '#ffff00', 'rgba(255,255,0,0.1)', '#00e5ff'); };
+
+        document.getElementById('menuBtn').onclick = function () {
+            document.getElementById('navLinks').classList.toggle('active');
         };
-
-        // JS Requirement: Event Handlers for Theme Switching [cite: 24, 25]
-        const root = document.documentElement;
-
-        document.getElementById('btn-sapphire').addEventListener('click', function() {
-            root.style.setProperty('--bg', '#0A192F');
-            root.style.setProperty('--text', '#ffffff');
-            root.style.setProperty('--accent', '#172a45');
-        });
-
-        document.getElementById('btn-light').addEventListener('click', function() {
-            root.style.setProperty('--bg', '#ffffff');
-            root.style.setProperty('--text', '#000000');
-            root.style.setProperty('--accent', '#e0e0e0');
-        });
-
-        document.getElementById('btn-contrast').addEventListener('click', function() {
-            root.style.setProperty('--bg', '#000000');
-            root.style.setProperty('--text', '#ffff00');
-            root.style.setProperty('--accent', '#333333');
-        });
     </script>
 </body>
+
 </html>
