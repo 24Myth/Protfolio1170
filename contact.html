@@ -2,115 +2,170 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Mithil Patel</title>
     <link rel="icon" type="image/png" href="dallogo.png">
     <style>
-        :root { 
-            --bg: #0A192F; 
-            --text: #ffffff; 
-            --accent: #172a45; 
+        /* Universal Selector */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root { --bg: #0A192F; --bg2: #112240; --text: #ccd6f6; --txb: #e6f1ff; --accent: #172a45; --highlight: #64ffda; --hlm: rgba(100,255,218,0.1); --lnk: #64b5f6; --shd: rgba(2,12,27,0.7); }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+        /* Multiple Selector  */
+        h1, h2, h3 { color: var(--txb); font-weight: 600; }
+
+        /* Styled URLs */
+        a { color: var(--lnk); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--highlight); }
+
+        /* Attribute Selector*/
+        a[href^="mailto"] { color: var(--highlight); text-decoration: underline; text-underline-offset: 3px; }
+
+        /* Nav */
+        header { position: sticky; top: 0; z-index: 100; background: var(--bg2); box-shadow: 0 4px 20px var(--shd); }
+
+        nav { max-width: 1100px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--highlight); text-decoration: none; letter-spacing: 1px; }
+
+        .links { display: flex; gap: 32px; list-style: none; }
+
+        /* Child Selector */
+        nav > .links > li > a { color: var(--text); font-weight: 500; font-size: 0.95rem; padding: 8px 4px; position: relative; transition: color 0.3s; }
+        nav > .links > li > a:hover { color: var(--highlight); }
+
+        /* Pseudo-element Selector */
+        nav > .links > li > a::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--highlight); transform: scaleX(0); transition: transform 0.3s; }
+        nav > .links > li > a:hover::after { transform: scaleX(1); }
+
+        .menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; }
+        .menu-btn span { display: block; width: 26px; height: 3px; background: var(--highlight); border-radius: 2px; }
+
+        main { max-width: 900px; margin: auto; padding: 40px 24px; }
+
+        .section-title { font-size: 1.6rem; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: var(--accent); }
+        .section-title span { color: var(--highlight); font-size: 1rem; font-weight: 400; }
+
+        /* Sibling Selector */
+        h1 ~ .contact-form { margin-top: 30px; }
+
+        /* Adjacent Sibling Selector  */
+        h1 + p { color: var(--highlight); font-style: italic; margin-bottom: 20px; }
+
+        /* Flexbox layout */
+        .contact-layout { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; }
+
+        /* Form Styling */
+        .contact-form { background-color: var(--accent); flex: 1; min-width: 280px; padding: 30px; border-radius: 8px; }
+
+        label { display: block; margin-top: 14px; font-size: 0.9rem; color: var(--text); }
+
+        /* Pseudo-element on label  */
+        label::after { content: " *"; color: #ff6b6b; }
+
+        input, textarea { width: 100%; padding: 10px; margin-top: 6px; background: #0d2538; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--txb); font-size: 0.95rem; }
+        input:focus, textarea:focus { outline: 2px solid var(--highlight); border-color: var(--highlight); }
+
+        button[type="submit"] { margin-top: 18px; padding: 10px 24px; cursor: pointer; background: var(--hlm); border: 1px solid var(--highlight); color: var(--highlight); border-radius: 20px; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        button[type="submit"]:hover { background: var(--highlight); color: var(--bg); }
+
+        /* Info side panel */
+        .contact-info { flex: 1; min-width: 240px; }
+        .contact-info h3 { color: var(--highlight); margin-bottom: 12px; }
+
+        /* Styled lists */
+        .contact-info ul { list-style: none; padding: 0; margin-bottom: 24px; }
+        .contact-info ul li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+        /* Image: border, padding, margin */
+        .contact-info img { width: 100%; max-width: 220px; border: 2px solid var(--highlight); padding: 4px; margin: 12px 0; border-radius: 8px; display: block; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--accent); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(100,255,218,0.08); }
+        th { background: var(--hlm); color: var(--highlight); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Ordered list */
+        .contact-info ol { padding-left: 20px; margin-top: 8px; }
+        .contact-info ol li { padding: 4px 0; }
+
+        footer { text-align: center; padding: 20px; background: var(--bg2); margin-top: 60px; border-top: 1px solid var(--accent); font-size: 0.85rem; }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+            .contact-layout { flex-direction: column; }
         }
 
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            text-align: center; 
-            transition: 0.3s;
-        }
-
-        nav { 
-            background-color: var(--accent); 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
-        }
-
-        nav a { 
-            color: var(--text); 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
-
-        .theme-area { 
-            text-align: center; 
-            margin: 20px; 
-        }
-
-        .box { 
-            background-color: var(--accent); 
-            display: inline-block; 
-            padding: 40px; 
-            margin-top: 20px; 
-            border-radius: 8px; 
-            border: 1px solid var(--text);
-        }
-
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            background-color: var(--accent); 
-            margin-top: 50px; 
+        /* Mobile */
+        @media (max-width: 480px) {
+            .links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; width: 100%; background: var(--bg2); padding: 20px; gap: 16px; box-shadow: 0 10px 20px var(--shd); }
+            .links.active { display: flex; }
+            .menu-btn { display: flex; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">HOME</a>
-        <a href="projects.html">PROJECTS</a>
-        <a href="contact.html">CONTACT</a>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">MP</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="theme-area">
-        <button id="btn-sapphire">Blue Theme</button>
-        <button id="btn-light">Light Theme</button>
-        <button id="btn-contrast">High Contrast</button>
-    </div>
+    <main>
+        <h1>Let's Connect</h1>
+        <p>Feel free to reach out — I'd love to hear from you.</p>
 
-    <h2 id="greeting"></h2>
-    
-    <img src="circuit.png" width="350" height="350" alt="Contact banner image">
-    <h1>Let's Connect</h1>
+        <div class="contact-layout">
+            <div class="contact-form">
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required aria-required="true">
 
-    <div class="box">
-        <p>Email: <a href="mailto:mithil.patel@dal.ca" style="color: inherit;">mithil.patel@dal.ca</a></p>
-        <p>Available for collaboration</p>
-    </div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your Email" required aria-required="true">
 
-    <footer>&copy; Mithil Patel</footer>
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="How can I help?"></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Details</h3>
+                <ul>
+                    <li>📧 <a href="mailto:mithil@dal.ca">mithil@dal.ca</a></li>
+                    <li>🏫 Dalhousie University, Halifax NS</li>
+                    <li>💼 Open to internship opportunities</li>
+                </ul>
+
+                <img src="circuit.png" alt="Mithil Patel profile photo">
+
+                <h3>Best Ways to Reach Me</h3>
+                <ol>
+                    <li>Email (fastest response)</li>
+                    <li>Contact form above</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 Mithil Patel</footer>
 
     <script>
-        // JS Requirement: Conditional status message [cite: 23]
-        const hour = new Date().getHours();
-        const greetElement = document.getElementById('greeting');
-        
-        if (hour > 17) { 
-            greetElement.innerText = "Catch you tomorrow!"; 
-        } else { 
-            greetElement.innerText = "Happy to help!"; 
-        }
-
-        // JS Requirement: Event Handlers for UI changes [cite: 25]
-        const root = document.documentElement;
-
-        document.getElementById('btn-sapphire').onclick = function() {
-            root.style.setProperty('--bg', '#0A192F'); 
-            root.style.setProperty('--text', '#ffffff'); 
-            root.style.setProperty('--accent', '#172a45');
-        };
-
-        document.getElementById('btn-light').onclick = function() {
-            root.style.setProperty('--bg', '#ffffff'); 
-            root.style.setProperty('--text', '#000000'); 
-            root.style.setProperty('--accent', '#e0e0e0');
-        };
-
-        document.getElementById('btn-contrast').onclick = function() {
-            root.style.setProperty('--bg', '#000000'); 
-            root.style.setProperty('--text', '#ffff00'); 
-            root.style.setProperty('--accent', '#333333');
+        document.getElementById('menuBtn').onclick = function () {
+            document.getElementById('navLinks').classList.toggle('active');
         };
     </script>
 </body>
